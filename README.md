@@ -1,15 +1,15 @@
-# Contribution [#]: (Looking for issue...)
+# Contribution [#1852]: metronome marks aren't written to lilypond files
 
 **Contribution Number:** 2
 **Student:** Emerson Palaganas  
-**Issue:** [GitHub issue link]  
-**Status:** [Phase I] In Progress
+**Issue:** https://github.com/cuthbertLab/music21/issues/1852  
+**Status:** [Phase I] Completed
 
 ---
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs explaining why this issue interests you, how it matches your skills/learning goals, what you hope to learn]
+I chose to contribute to this issue because it combines my technical skills with my passions. Working with Python allows me to use a language I am familiar with, while music21 connects with my interest in music theory. In addition, the repository has an active GitHub community. Seeing that the maintainers are consistently responsive and actively updating makes it feel meaningful to contribute.
 
 ---
 
@@ -17,19 +17,19 @@
 
 ### Problem Description
 
-[In your own words, what's broken or missing?]
+When a `MetronomeMark` (a tempo indication specifying BPM and note duration) is included in a music21 `Stream`, it does not appear when converting to LilyPond format (`.ly` files). Other elements like key signatures, time signatures, and notes appear correctly in the output.
 
 ### Expected Behavior
 
-[What should happen?]
+The converted LilyPond file has `\tempo` which gives the tempo of the score.
 
 ### Current Behavior
 
-[What actually happens?]
+The converted LilyPond file does not have `\tempo` even though everything else gets converted properly
 
 ### Affected Components
 
-[Which parts of the codebase are involved?]
+`music21/lily/translate.py` seems to be where the conversion happens. Fixing the issue probably requires to edit this file.
 
 ---
 
