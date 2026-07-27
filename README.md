@@ -9,7 +9,7 @@
 
 ## Why I Chose This Issue
 
-I chose to contribute to this issue because it combines my technical skills with my passions. Working with Python allows me to use a language I am familiar with, while music21 connects with my interest in music theory. In addition, the repository has an active GitHub community. Seeing that the maintainers are consistently responsive and actively updating makes it feel meaningful to contribute.
+I chose to contribute to this issue because it combines my technical skills with my passions. Working with Python allows me to use a language I am familiar with, while music21 connects with my int[...]
 
 ---
 
@@ -17,7 +17,7 @@ I chose to contribute to this issue because it combines my technical skills with
 
 ### Problem Description
 
-When a `MetronomeMark` (a tempo indication specifying BPM and note duration) is included in a music21 `Stream`, it does not appear when converting to LilyPond format (`.ly` files). Other elements like key signatures, time signatures, and notes appear correctly in the output.
+When a `MetronomeMark` (a tempo indication specifying BPM and note duration) is included in a music21 `Stream`, it does not appear when converting to LilyPond format (`.ly` files). Other elements [...]
 
 ### Expected Behavior
 
@@ -57,30 +57,15 @@ The converted LilyPond file does not have `\tempo` even though everything else g
 
 ### Analysis
 
-[Your analysis of the root cause - what's causing the issue?]
+MetronomeMark objects are not written to LilyPond because the LilyPond translator lacks logic to convert MetronomeMark attributes into a `\tempo` command, causing tempo data to be dropped during export.
 
 ### Proposed Solution
 
-[High-level description of your fix approach]
+Add serialization in `music21/lily/translate.py` to detect `MetronomeMark` instances and emit a correctly formatted `\tempo` line using the note unit and BPM.
 
 ### Implementation Plan
 
-Using UMPIRE framework (adapted):
-
-**Understand:** [Restate the problem]
-
-**Match:** [What similar patterns/solutions exist in the codebase?]
-
-**Plan:** [Step-by-step implementation plan]
-1. [Modify file X to do Y]
-2. [Add function Z]
-3. [Update tests]
-
-**Implement:** [Link to your branch/commits as you work]
-
-**Review:** [Self-review checklist - does it follow the project's contribution guidelines?]
-
-**Evaluate:** [How will you verify it works?]
+Implement conversion logic and a helper to compute the LilyPond unit string in `music21/lily/translate.py`, add unit tests that convert Streams with `MetronomeMark` and assert the resulting `.ly` contains the expected `\tempo`, then run and adjust until tests pass.
 
 ---
 
