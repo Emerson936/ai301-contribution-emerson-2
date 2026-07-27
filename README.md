@@ -37,19 +37,19 @@ The converted LilyPond file does not have `\tempo` even though everything else g
 
 ### Environment Setup
 
-[Notes on setting up your local development environment - challenges you faced, how you solved them]
+Use `git clone https://github.com/Emerson936/music21.git` to clone the repositiory. 
 
 ### Steps to Reproduce
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+1. Open `file.ly`
+2. You'll find key signature, time signature, and notes, but nothing for tempo
 
 ### Reproduction Evidence
 
-- **Commit showing reproduction:** [Link to commit in your fork]
-- **Screenshots/logs:** [If applicable]
-- **My findings:** [What you discovered during reproduction]
+- **Commit showing reproduction:** No need for a commit to reproduce this
+- **My findings:** The reported found two other bugs that may fix this:
+  1. Using scalar notation alone produces invalid LilyPond syntax.
+  2. The docs say to pass a steno duration like "quarter", but in practice "4" is required instead.
 
 ---
 
