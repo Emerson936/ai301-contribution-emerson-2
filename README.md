@@ -73,18 +73,18 @@ Implement conversion logic and a helper to compute the LilyPond unit string in `
 
 ### Unit Tests
 
-- [ ] Test case 1: [Description]
-- [ ] Test case 2: [Description]
-- [ ] Test case 3: [Description]
+- [ ] Test case 1: `LyTempoEvent` doctests confirm `stenoDuration` + `scalar` (no range) now emits valid `\tempo 4 = 87` instead of the old bare/invalid `\tempo 87`.
+- [ ] Test case 2: `testMetronomeMark` — asserts `lyEmbeddedScmFromMetronomeMark()` converts a numbered `MetronomeMark` correctly and returns None for a numberless one.
+- [ ] Test case 3: Fixed LyStenoDuration docstring example (was passing invalid 'quarter' instead of '4'), now verified via doctest.
 
 ### Integration Tests
 
-- [ ] Integration scenario 1
-- [ ] Integration scenario 2
+- [ ] Integration scenario 1: `testMetronomeMarkWrittenInStream` builds a full Stream (key, tempo, time sig, note) and confirms `\tempo 4 = 87` appears in the assembled LilyPond output.
+- [ ] Integration scenario 2: Ran the issue's exact repro through `stream.write('lily', ...)` and confirmed the compiled `.ly` file passes real `lilypond` compilation without syntax errors.
 
 ### Manual Testing
 
-[What you tested manually and results]
+I first verified the logic by monkeypatching around the missing local LilyPond binary and confirming correct `\tempo` output for several durations (quarter, dotted eighth) and the no-number edge case. After installing LilyPond (`brew install lilypond`), I reran the full test suite for real and confirmed all tests pass, with `ruff/mypy` clean across the package.
 
 ---
 
