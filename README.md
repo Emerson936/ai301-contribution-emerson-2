@@ -90,25 +90,21 @@ I first verified the logic by monkeypatching around the missing local LilyPond b
 
 ## Implementation Notes
 
-### Week [X] Progress
+### Week 1 Progress
 
 Investigated GitHub issue #1852 (MetronomeMark objects silently dropped from LilyPond output), traced the root cause to a missing dispatch branch in translate.py plus two latent bugs in the unused LyTempoEvent class, then implemented and tested the fix. Main challenge was verifying correctness locally without a LilyPond binary installed — worked around it with a monkeypatch, then confirmed for real after installing LilyPond via Homebrew.
-
-### Week [Y] Progress
-
-[Continue documenting as you work]
 
 ### Code Changes
 
 - **Files modified:** music21/lily/translate.py, music21/lily/lilyObjects.py
-- **Key commits:** [Links to important commits]
+- **Key commits:** https://github.com/cuthbertLab/music21/pull/1993/commits
 - **Approach decisions:** Reused the existing lyMultipliedDurationFromDuration() duration-conversion helper rather than duplicating that logic, and followed the established lyEmbeddedScmFrom* pattern (Clef/KeySignature/TimeSignature) for consistency instead of introducing a new dispatch style. Fixed LyTempoEvent itself (rather than routing around it) since the issue explicitly reported bugs in that class.
 
 ---
 
 ## Pull Request
 
-**PR Link:** [GitHub PR URL when submitted]
+**PR Link:** https://github.com/cuthbertLab/music21/pull/1993
 
 **PR Description:** The Lilypond translator's element dispatch never recognized MetronomeMark, so tempo markings were dropped entirely when writing to lily. Also fixes LyTempoEvent.stringOutput(), which ignored a paired stenoDuration when no tempoRange was given, and its docstring, which showed an invalid steno duration ('quarter' instead of '4').
 
@@ -116,11 +112,11 @@ Fixes #1852
 
 AI-assisted with Claude (>10 lines).
 
-**Maintainer Feedback:**
+**Maintainer Feedback:** (Awaiting Feedback)
 - [Date]: [Summary of feedback received]
 - [Date]: [How you addressed it]
 
-**Status:** [Awaiting review / Iterating / Approved / Merged]
+**Status:** [Awaiting review]
 
 ---
 
