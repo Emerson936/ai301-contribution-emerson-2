@@ -92,7 +92,7 @@ I first verified the logic by monkeypatching around the missing local LilyPond b
 
 ### Week [X] Progress
 
-[What you built this week, challenges faced, decisions made]
+Investigated GitHub issue #1852 (MetronomeMark objects silently dropped from LilyPond output), traced the root cause to a missing dispatch branch in translate.py plus two latent bugs in the unused LyTempoEvent class, then implemented and tested the fix. Main challenge was verifying correctness locally without a LilyPond binary installed — worked around it with a monkeypatch, then confirmed for real after installing LilyPond via Homebrew.
 
 ### Week [Y] Progress
 
@@ -100,9 +100,9 @@ I first verified the logic by monkeypatching around the missing local LilyPond b
 
 ### Code Changes
 
-- **Files modified:** [List]
+- **Files modified:** music21/lily/translate.py, music21/lily/lilyObjects.py
 - **Key commits:** [Links to important commits]
-- **Approach decisions:** [Why you chose certain approaches]
+- **Approach decisions:** Reused the existing lyMultipliedDurationFromDuration() duration-conversion helper rather than duplicating that logic, and followed the established lyEmbeddedScmFrom* pattern (Clef/KeySignature/TimeSignature) for consistency instead of introducing a new dispatch style. Fixed LyTempoEvent itself (rather than routing around it) since the issue explicitly reported bugs in that class.
 
 ---
 
@@ -110,7 +110,11 @@ I first verified the logic by monkeypatching around the missing local LilyPond b
 
 **PR Link:** [GitHub PR URL when submitted]
 
-**PR Description:** [Draft or final PR description - much of the content above can be adapted]
+**PR Description:** The Lilypond translator's element dispatch never recognized MetronomeMark, so tempo markings were dropped entirely when writing to lily. Also fixes LyTempoEvent.stringOutput(), which ignored a paired stenoDuration when no tempoRange was given, and its docstring, which showed an invalid steno duration ('quarter' instead of '4').
+
+Fixes #1852
+
+AI-assisted with Claude (>10 lines).
 
 **Maintainer Feedback:**
 - [Date]: [Summary of feedback received]
