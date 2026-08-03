@@ -3,7 +3,7 @@
 **Contribution Number:** 2
 **Student:** Emerson Palaganas  
 **Issue:** https://github.com/cuthbertLab/music21/issues/1852  
-**Status:** [Phase I] Completed
+**Status:** [Phase IV] In Progress
 
 ---
 
