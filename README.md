@@ -2,8 +2,8 @@
 
 **Contribution Number:** 2
 **Student:** Emerson Palaganas  
-**Issue:** https://github.com/cuthbertLab/music21/issues/1852  
-**Status:** [Phase IV] In Progress
+**Issue:** https://github.com/cuthbertLab/music21/issues/1852  https://github.com/cuthbertLab/music21/pull/1993
+**Status:** [Phase IV] Complete
 
 ---
 
@@ -112,11 +112,11 @@ Fixes #1852
 
 AI-assisted with Claude (>10 lines).
 
-**Maintainer Feedback:** (Awaiting Feedback)
-- [Date]: [Summary of feedback received]
-- [Date]: [How you addressed it]
+**Maintainer Feedback:** 
+- August 5: Owner appreciated the PR and work. There were some small issues with my contribution that were fixed by the owner
+- August 7: Owner merged code for lily pad enhancement
 
-**Status:** [Awaiting review]
+**Status:** Merged
 
 ---
 
@@ -124,20 +124,22 @@ AI-assisted with Claude (>10 lines).
 
 ### Technical Skills Gained
 
-[What you learned technically]
+- Prompt Engineering: Gained more experience speaking and interacting with AI. Learned how to give it context around a problem better
+- Python Skills: Even though AI did a lot of coding, having that Python knowledge still helped
 
 ### Challenges Overcome
 
-[What was hard and how you solved it]
+- Giving the AI guidelines: AI did way more than it should have during a few iterations of this. To prevent this, I had to be more specific with the issue, and give it guidelines on what files it can change for it not to go to far with the generation.
 
 ### What I'd Do Differently Next Time
 
-[Reflection on your process]
+- More contact with the repo: While I was able to understand the issue, I could have asked the person who opened the issue for pointers/endpoints. It could have been a better learning experience.
 
 ---
 
 ## Resources Used
 
-- [Link to helpful documentation]
-- [Tutorial or Stack Overflow post that helped]
-- [GitHub issues or discussions that helped]
+- https://github.com/cuthbertLab/music21/issues/1852
+- Guidlines: https://github.com/cuthbertLab/music21/blob/master/CONTRIBUTING.md
+- Official documentation: https://music21.org/music21docs/
+- README: https://github.com/cuthbertLab/music21/blob/master/README.md
