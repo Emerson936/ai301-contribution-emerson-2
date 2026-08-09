@@ -64,8 +64,21 @@ MetronomeMark objects are not written to LilyPond because the LilyPond translato
 Add serialization in `music21/lily/translate.py` to detect `MetronomeMark` instances and emit a correctly formatted `\tempo` line using the note unit and BPM.
 
 ### Implementation Plan
+**Understand:** `MetronomeMark` objects added to a `Stream` were silently dropped when writing to LilyPond format (`stream.write('lily', ...)`) — no `\tempo` marking appeared anywhere in the output, with no error raised.
 
-Implement conversion logic and a helper to compute the LilyPond unit string in `music21/lily/translate.py`, add unit tests that convert Streams with `MetronomeMark` and assert the resulting `.ly` contains the expected `\tempo`, then run and adjust until tests pass.
+**Match:** `LilypondConverter.appendM21ObjectToContext` already had working dispatch branches for similar contextual markers (`Clef`, `KeySignature`, `TimeSignature`) that each delegate to a dedicated `lyEmbeddedScmFrom*` method; `MetronomeMark` just needed the same pattern, reusing the existing `lyMultipliedDurationFromDuration()` helper for duration-to-LilyPond conversion.
+
+**Plan:**
+1. Fix `LyTempoEvent.stringOutput()` in `lilyObjects.py` to correctly emit `\tempo <duration> = <bpm>` when a `stenoDuration` is paired with a `scalar` and no `tempoRange`.
+2. Add `lyEmbeddedScmFromMetronomeMark()` to `translate.py`, following the existing `lyEmbeddedScmFromKeySignature`/`lyEmbeddedScmFromTimeSignature` pattern.
+3. Wire a `'MetronomeMark' in c` branch into `appendM21ObjectToContext`'s dispatch chain.
+4. Update tests (doctests in `lilyObjects.py`, new unit tests in `translate.py`).
+
+**Implement:** [PR #1993](https://github.com/cuthbertLab/music21/pull/1993) — commits `9fd67a441` and `3d839a885` on branch [`fix/lily-metronome-mark-1852`](https://github.com/Emerson936/music21/tree/fix/lily-metronome-mark-1852).
+
+**Review:** Confirmed against `CONTRIBUTING.md`/`CLAUDE.md`: AI-assistance disclosed, `Fixes #1852` linked in the PR, `ruff`/`mypy` clean, camelCase/docstring conventions followed, and a `New in v11` marker added per the versioning guidelines.
+
+**Evaluate:** Verified via new unit tests (`testMetronomeMark`, `testMetronomeMarkWrittenInStream`) and doctests, then confirmed end-to-end by reproducing the original issue and compiling the generated `.ly` file with a real LilyPond installation.
 
 ---
 
