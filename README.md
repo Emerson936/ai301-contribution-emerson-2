@@ -9,7 +9,7 @@
 
 ## Why I Chose This Issue
 
-I chose to contribute to this issue because it combines my technical skills with my passions. Working with Python allows me to use a language I am familiar with, while music21 connects with my int[...]
+I chose to contribute to this issue because it combines my technical skills with my passions. Working with Python allows me to use a language I am familiar with, while music21 connects with my interest in music theory. In addition, the repository has an active GitHub community. Seeing that the maintainers are consistently responsive and actively updating makes it feel meaningful to contribute.
 
 ---
 
@@ -17,7 +17,7 @@ I chose to contribute to this issue because it combines my technical skills with
 
 ### Problem Description
 
-When a `MetronomeMark` (a tempo indication specifying BPM and note duration) is included in a music21 `Stream`, it does not appear when converting to LilyPond format (`.ly` files). Other elements [...]
+When a `MetronomeMark` (a tempo indication specifying BPM and note duration) is included in a music21 `Stream`, it does not appear when converting to LilyPond format (`.ly` files). Other elements like key signatures, time signatures, and notes appear correctly in the output.
 
 ### Expected Behavior
 
